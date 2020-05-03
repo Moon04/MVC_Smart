@@ -1,0 +1,27 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <form method="post" >
+        Your name: <input type="text" name="Name"/>
+        <br/>
+        <br/>
+        Your email: <input type="text" name="Email" />
+        <br/>
+        <br/>
+        Your phone: <input type="text" name="Phone" />
+        <br/>
+        <br/>
+        Will you attend? <input list="options" name="AttendingOption"/>
+        <datalist id="options">
+            <option value="Yes"/>
+            <option value="I'll try'" />
+            <option value="Not Sure" />
+        </datalist>
+        <br/>
+        <br/>
+        <input type="submit" value="Submit"/>
+    </form>
+</body>
+</html>
