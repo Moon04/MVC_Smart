@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddEmployeeForm</title>
+</head>
+<body>
+    <form method="post">
+        Employee name: <input type="text" name="Name" />
+        <br />
+        <br />
+        Employee address: <input type="text" name="Address" />
+        <br />
+        <br />
+        Employee salary: <input type="text" name="Salary" />
+        <br />
+        <br />
+        Employee gender: <input list="options" name="Gender" />
+        <datalist id="options">
+            <option value="Male" />
+            <option value="Female" />
+        </datalist>
+        <br />
+        <br />
+        <input type="submit" value="Save to Db" />
+    </form>
+</body>
+</html>
