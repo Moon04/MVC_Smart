@@ -1,0 +1,45 @@
+﻿@model Employee
+
+@{
+    ViewBag.Title = "Add";
+}
+
+
+<br/>
+<h2>Add New Employee</h2>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label for="Name">Name</label>
+                @Html.TextBoxFor(emp => emp.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(emp => emp.Name, null, new { @class="text-danger"})
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                @Html.TextBoxFor(emp => emp.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(emp => emp.Email, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Salary">Salary</label>
+                @Html.TextBoxFor(emp => emp.Salary, new { @class = "form-control" })
+                @Html.ValidationMessageFor(emp => emp.Salary, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                @Html.EnumDropDownListFor(emp => emp.Gender, "Select Gender", new { @class = "form-control" })
+                @Html.ValidationMessageFor(emp => emp.Gender, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Address">Address</label>
+                @Html.TextAreaFor(emp => emp.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(emp => emp.Address, null, new { @class = "text-danger" })
+            </div>
+
+            <input type="submit" value="Add" class="btn btn-primary"/>
+            @Html.ActionLink("Back To List", "Index", "Employee", null, new { @class="btn btn-light"})
+        </form>
+    </div>
+</div>
+

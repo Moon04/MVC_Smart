@@ -1,0 +1,41 @@
+﻿@model List<Employee>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+<br/> 
+<h2>Employees</h2>
+<br />
+@Html.ActionLink("+ Add new employee", "Add", "Employee", null, new { @class = "btn btn-primary" })
+<hr/>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Gender</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Employee emp in Model)
+            {
+                @Html.Partial("_EmployeePartial", emp);
+                //Html.RenderPartial("EmployeePartial", new { id = emp.Id });
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No Employees Found
+    </div>
+}
+
+
