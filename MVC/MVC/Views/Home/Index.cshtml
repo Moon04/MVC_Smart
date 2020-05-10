@@ -4,3 +4,10 @@
 
 <h2>Welcome</h2>
 
+@{ 
+    MVC.DAL.ModelContext ctx = new MVC.DAL.ModelContext();
+    var emps = ctx.Employees.ToList();
+}
+
+@Html.UlFor(emps.ToArray())
+

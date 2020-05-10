@@ -10,6 +10,11 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/content/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .input-validation-error{
+            border: 1px solid #dc3545;
+        }
+    </style>
     <title>My App | @ViewBag.Title</title>
 </head>
 <body>
@@ -39,5 +44,8 @@
     <script src="~/scripts/jquery-3.0.0.min.js"></script>
     @*<script src="~/scripts/popper.min.js"></script>*@
     <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("Scripts", false)
 </body>
 </html>

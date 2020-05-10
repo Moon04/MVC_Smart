@@ -51,3 +51,4 @@ E:\ITI\MVC\MVC_Smart\MVC\MVC\bin\EntityFramework.SqlServer.xml
 E:\ITI\MVC\MVC_Smart\MVC\MVC\obj\Debug\MVC.Migrations.Initial.resources
 E:\ITI\MVC\MVC_Smart\MVC\MVC\obj\Debug\MVC.csproj.GenerateResource.Cache
 E:\ITI\MVC\MVC_Smart\MVC\MVC\bin\ASPNetSpell.dll
+E:\ITI\MVC\MVC_Smart\MVC\MVC\obj\Debug\MVC.Migrations.addPhoneNoToEmployee.resources

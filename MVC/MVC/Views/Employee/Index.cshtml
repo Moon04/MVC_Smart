@@ -1,4 +1,4 @@
-﻿@model List<Employee>
+﻿ @model EmployeeViewModel
 
 @{
     ViewBag.Title = "Employees";
@@ -7,10 +7,24 @@
 <br/> 
 <h2>Employees</h2>
 <br />
+
 @Html.ActionLink("+ Add new employee", "Add", "Employee", null, new { @class = "btn btn-primary" })
+
+<!-- Button trigger modal -->
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employee-modal">
+    + Add new employee
+</button>*@
+
 <hr/>
 
-@if (Model != null && Model.Count > 0)
+@if(TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
+
+@if (Model != null && Model.Employees != null && Model.Employees.Count > 0)
 {
     <table class="table table-hover table-striped">
         <thead>
@@ -20,10 +34,11 @@
                 <th>Salary</th>
                 <th>Gender</th>
                 <th>Address</th>
+                <th></th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (Employee emp in Model)
+        <tbody id="tbody">
+            @foreach (Employee emp in Model.Employees)
             {
                 @Html.Partial("_EmployeePartial", emp);
                 //Html.RenderPartial("EmployeePartial", new { id = emp.Id });
@@ -38,4 +53,101 @@ else
     </div>
 }
 
+@{ 
+    AjaxOptions opts = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "onSuccess",
+        UpdateTargetId = "tbody",
+        InsertionMode = InsertionMode.InsertAfter
+    };
+}
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="employee-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    @using (Ajax.BeginForm("AddAjax", "Employee", opts))
+    {
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Employee.Name)
+                        @Html.TextBoxFor(m => m.Employee.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Employee.Name, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Employee.Email)
+                        @Html.TextBoxFor(m => m.Employee.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Employee.Email, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Employee.PhoneNumber)
+                        @Html.TextBoxFor(m => m.Employee.PhoneNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Employee.PhoneNumber, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Employee.Salary)
+                        @Html.TextBoxFor(m => m.Employee.Salary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Employee.Salary, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Employee.Gender)
+                        @Html.EnumDropDownListFor(m => m.Employee.Gender, "Select Gender", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Employee.Gender, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Employee.Address)
+                        @Html.TextAreaFor(m => m.Employee.Address, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Employee.Address, null, new { @class = "text-danger" })
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </div>
+     }
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        function confirmDelete(id)
+        {
+            let res = confirm("Are you sure?");
+            if (res) {
+                $.ajax({
+                    url: `/Employee/Delete/${id}`,
+                    type: "POST",
+                    success: function (response) {
+                        if(response)
+                        {
+                            let tr = $(`#${id}`);
+                            tr.remove();
+                        }
+                    },
+                    error: function (xhr, status, err) {
+                        console.log(err);
+                    }
+                });
+            }
+        }
+
+        function onSuccess(employee)
+        {
+            document.getElementById("form0").reset();
+            $('#employee-modal').modal("hide");
+        }
+    </script>
+}
 

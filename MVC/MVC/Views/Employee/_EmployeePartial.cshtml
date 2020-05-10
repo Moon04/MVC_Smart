@@ -1,9 +1,10 @@
 ﻿@model Employee
 
-<tr>
+<tr id="@Model.Id">
     <td>@Model.Name</td>
-    <td>@Model.Email</td>
-    <td>@Model.Salary</td>
+    <td>@Html.DisplayFor(m => m.Email)</td>
+    <td>@Model.PhoneNumber</td>
+    <td>@Html.DisplayFor(m => m.Salary)</td>
     <td>@Model.Gender</td>
     <td>@Model.Address</td>
     <td>

@@ -17,6 +17,10 @@ namespace MVC.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
+        [MaxLength(15)]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
         [Required]
         [MaxLength(130)]
         [EmailAddress]
@@ -26,8 +30,14 @@ namespace MVC.Models
         public string Address { get; set; }
 
         [Range(2000, 10000)]
+        [DataType(DataType.Currency)]
         public int Salary { get; set; }
 
         public Gender? Gender { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
