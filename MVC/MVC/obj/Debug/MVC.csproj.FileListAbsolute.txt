@@ -52,3 +52,13 @@ E:\ITI\MVC\MVC_Smart\MVC\MVC\obj\Debug\MVC.Migrations.Initial.resources
 E:\ITI\MVC\MVC_Smart\MVC\MVC\obj\Debug\MVC.csproj.GenerateResource.Cache
 E:\ITI\MVC\MVC_Smart\MVC\MVC\bin\ASPNetSpell.dll
 E:\ITI\MVC\MVC_Smart\MVC\MVC\obj\Debug\MVC.Migrations.addPhoneNoToEmployee.resources
+E:\ITI\MVC\MVC_Smart\MVC\MVC\obj\Debug\MVC.Migrations.AddDepartmentTable.resources
+E:\ITI\MVC\MVC_Smart\MVC\MVC\obj\Debug\MVC.Migrations.AddRelEmpDept.resources
+E:\ITI\MVC\MVC_Smart\MVC\MVC\obj\Debug\MVC.Migrations.EditRelEmpDept.resources
+E:\ITI\MVC\MVC_Smart\MVC\MVC\bin\Antlr3.Runtime.dll
+E:\ITI\MVC\MVC_Smart\MVC\MVC\bin\Newtonsoft.Json.dll
+E:\ITI\MVC\MVC_Smart\MVC\MVC\bin\System.Web.Optimization.dll
+E:\ITI\MVC\MVC_Smart\MVC\MVC\bin\WebGrease.dll
+E:\ITI\MVC\MVC_Smart\MVC\MVC\bin\Antlr3.Runtime.pdb
+E:\ITI\MVC\MVC_Smart\MVC\MVC\bin\Newtonsoft.Json.xml
+E:\ITI\MVC\MVC_Smart\MVC\MVC\bin\System.Web.Optimization.xml

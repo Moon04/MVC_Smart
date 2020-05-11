@@ -1,0 +1,9 @@
+﻿@model Department
+
+<tr id="@Model.Id">
+    <td>@Model.Name</td>
+    <td>@Model.Employees.Count</td>
+    <td>
+        @Html.Partial("_ControlsPartial", Model.Id)
+    </td>
+</tr>

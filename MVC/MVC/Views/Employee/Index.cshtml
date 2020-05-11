@@ -11,9 +11,9 @@
 @Html.ActionLink("+ Add new employee", "Add", "Employee", null, new { @class = "btn btn-primary" })
 
 <!-- Button trigger modal -->
-@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employee-modal">
-    + Add new employee
-</button>*@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employee-modal">
+    + Add new employee Ajax
+</button>
 
 <hr/>
 
@@ -31,6 +31,8 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Department</th>
+                <th>Phone Number</th>
                 <th>Salary</th>
                 <th>Gender</th>
                 <th>Address</th>
@@ -89,6 +91,16 @@ else
                         @Html.ValidationMessageFor(m => m.Employee.Email, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
+                        @Html.LabelFor(m => m.Employee.Fk_DepartmentId)
+                        @Html.DropDownListFor(
+                        m => m.Employee.Fk_DepartmentId,
+                        new SelectList(Model.Departments, "Id", "Name"),
+                        "Select Department",
+                        new { @class = "form-control" }
+                        )
+                        @Html.ValidationMessageFor(m => m.Employee.Fk_DepartmentId, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
                         @Html.LabelFor(m => m.Employee.PhoneNumber)
                         @Html.TextBoxFor(m => m.Employee.PhoneNumber, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Employee.PhoneNumber, null, new { @class = "text-danger" })
@@ -117,37 +129,3 @@ else
      }
     </div>
 </div>
-
-
-@section Scripts{
-    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script>
-        function confirmDelete(id)
-        {
-            let res = confirm("Are you sure?");
-            if (res) {
-                $.ajax({
-                    url: `/Employee/Delete/${id}`,
-                    type: "POST",
-                    success: function (response) {
-                        if(response)
-                        {
-                            let tr = $(`#${id}`);
-                            tr.remove();
-                        }
-                    },
-                    error: function (xhr, status, err) {
-                        console.log(err);
-                    }
-                });
-            }
-        }
-
-        function onSuccess(employee)
-        {
-            document.getElementById("form0").reset();
-            $('#employee-modal').modal("hide");
-        }
-    </script>
-}
-

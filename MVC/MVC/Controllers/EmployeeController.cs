@@ -20,7 +20,8 @@ namespace MVC.Controllers
         {
             EmployeeViewModel empVM = new EmployeeViewModel
             {
-                Employees = ctx.Employees.ToList()
+                Employees = ctx.Employees.ToList(),
+                Departments = ctx.Departments.ToList()
             };
             return View(empVM);
         }
@@ -29,7 +30,11 @@ namespace MVC.Controllers
         public ViewResult Add()
         {
             ViewBag.Action = "Add";
-            return View("EmployeeForm");
+            EmployeeViewModel empVM = new EmployeeViewModel
+            {
+                Departments = ctx.Departments.ToList()
+            };
+            return View("EmployeeForm", empVM);
         }
 
         [HttpPost]
@@ -44,7 +49,11 @@ namespace MVC.Controllers
             }
 
             ViewBag.Action = "Add";
-            return View("EmployeeForm");
+            EmployeeViewModel empVM = new EmployeeViewModel
+            {
+                Departments = ctx.Departments.ToList()
+            };
+            return View("EmployeeForm", empVM);
         }
 
         [HttpPost]
@@ -67,7 +76,12 @@ namespace MVC.Controllers
             if (emp != null)
             {
                 ViewBag.Action = "Edit";
-                return View("EmployeeForm", emp);
+                EmployeeViewModel empVM = new EmployeeViewModel
+                {
+                    Departments = ctx.Departments.ToList(),
+                    Employee = emp
+                };
+                return View("EmployeeForm", empVM);
             }
 
             return HttpNotFound("Emloyee Not Found");
@@ -86,7 +100,12 @@ namespace MVC.Controllers
             }
 
             ViewBag.Action = "Edit";
-            return View("EmployeeForm", employee);
+            EmployeeViewModel empVM = new EmployeeViewModel
+            {
+                Departments = ctx.Departments.ToList(),
+                Employee = employee
+            };
+            return View("EmployeeForm", empVM);
         }
 
         [HttpPost]

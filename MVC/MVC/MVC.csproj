@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
     <!-- <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion> -->
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -45,6 +46,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ASPNetSpell, Version=4.0.3.24577, Culture=neutral, PublicKeyToken=ed4c1e6166f7ca72, processorArchitecture=MSIL">
       <HintPath>..\packages\Spell.Check.4.0.3.2\lib\net40\ASPNetSpell.dll</HintPath>
       <Private>True</Private>
@@ -90,6 +95,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -101,6 +110,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -108,6 +121,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -279,6 +296,7 @@
     <Content Include="scripts\popper-utils.min.js" />
     <Content Include="scripts\popper.js" />
     <Content Include="scripts\popper.min.js" />
+    <Content Include="scripts\siteScripts\site.js" />
     <Content Include="scripts\src\index.js" />
     <Content Include="scripts\src\methods\defaults.js" />
     <Content Include="scripts\src\methods\destroy.js" />
@@ -359,7 +377,10 @@
     <Content Include="scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -375,7 +396,20 @@
     <Compile Include="Migrations\202005101849370_addPhoneNoToEmployee.Designer.cs">
       <DependentUpon>202005101849370_addPhoneNoToEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005110235467_AddDepartmentTable.cs" />
+    <Compile Include="Migrations\202005110235467_AddDepartmentTable.Designer.cs">
+      <DependentUpon>202005110235467_AddDepartmentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005110239150_AddRelEmpDept.cs" />
+    <Compile Include="Migrations\202005110239150_AddRelEmpDept.Designer.cs">
+      <DependentUpon>202005110239150_AddRelEmpDept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005110421066_EditRelEmpDept.cs" />
+    <Compile Include="Migrations\202005110421066_EditRelEmpDept.Designer.cs">
+      <DependentUpon>202005110421066_EditRelEmpDept.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Enums\Gender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -397,6 +431,10 @@
     <Content Include="Views\Employee\_EmployeePartial.cshtml" />
     <Content Include="Views\Shared\_ControlsPartial.cshtml" />
     <Content Include="Views\Employee\EmployeeForm.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Department\_DepartmentPartial.cshtml" />
+    <Content Include="Views\Department\DepartmentForm.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -419,6 +457,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005101849370_addPhoneNoToEmployee.resx">
       <DependentUpon>202005101849370_addPhoneNoToEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005110235467_AddDepartmentTable.resx">
+      <DependentUpon>202005110235467_AddDepartmentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005110239150_AddRelEmpDept.resx">
+      <DependentUpon>202005110239150_AddRelEmpDept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005110421066_EditRelEmpDept.resx">
+      <DependentUpon>202005110421066_EditRelEmpDept.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

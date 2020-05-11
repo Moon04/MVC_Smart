@@ -27,6 +27,7 @@ namespace MVC.Models
         public string Email { get; set; }
 
         [MaxLength(250)]
+        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
 
         [Range(2000, 10000)]
@@ -34,6 +35,12 @@ namespace MVC.Models
         public int Salary { get; set; }
 
         public Gender? Gender { get; set; }
+
+        [Display(Name ="Department")]
+        public int Fk_DepartmentId { get; set; }
+
+        [ForeignKey("Fk_DepartmentId")]
+        public virtual Department Department { get; set; }
 
         public override string ToString()
         {

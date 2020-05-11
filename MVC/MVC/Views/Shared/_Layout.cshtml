@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/content/bootstrap.min.css" rel="stylesheet" />
+    @Styles.Render("~/Bundles/Styles")
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"/>
     <style>
         .input-validation-error{
@@ -35,17 +35,16 @@
                 <li class="nav-item">
                     @Html.ActionLink("Employees", "Index", "Employee", null, new { @class = "nav-link" })
                 </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Departments", "Index", "Department", null, new { @class = "nav-link" })
+                </li>
             </ul>
         </div>
     </nav>
     <div class="container"> 
         @RenderBody()  
     </div>
-    <script src="~/scripts/jquery-3.0.0.min.js"></script>
-    @*<script src="~/scripts/popper.min.js"></script>*@
-    <script src="~/scripts/bootstrap.min.js"></script>
-    <script src="~/scripts/jquery.validate.min.js"></script>
-    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+    @Scripts.Render("~/Bundles/Scripts")
     @RenderSection("Scripts", false)
 </body>
 </html>

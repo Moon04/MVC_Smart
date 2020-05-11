@@ -1,4 +1,4 @@
-﻿@model Employee
+﻿@model EmployeeViewModel
 
 @{
     ViewBag.Title = ViewBag.Action + "Employee";
@@ -11,39 +11,65 @@
     <div class="col-md-4">
         @using (Html.BeginForm())
         {
-            if(ViewBag.Action == "Edit")
+            if (ViewBag.Action == "Edit")
             {
-                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.Employee.Id)
             }
             <div class="form-group">
-                @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Employee.Name)
+                @Html.EditorFor(m => m.Employee.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Employee.Name, null, new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Email)
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Employee.Email)
+                @Html.EditorFor(m => m.Employee.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Employee.Email, null, new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.PhoneNumber)
-                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.PhoneNumber, null, new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Employee.Email)
+                @Html.EditorFor(m => m.Employee.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Employee.Email, null, new { @class = "text-danger" })
+            </div>
+
+
+            //List<SelectListItem> depts = Model.Departments.Select(d => new SelectListItem
+            //{
+            //    Text = d.Name,
+            //    Value = d.Id.ToString()
+            //}).ToList();
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Employee.Fk_DepartmentId)
+                @*<select name="Employee.Fk_DepartmentId" id="Employee_Fk_DepartmentId" class="form-control">
+                    <option value="">Select Department</option>
+                    @foreach (Department item in Model.Departments)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>*@
+                @Html.DropDownListFor(
+                    m => m.Employee.Fk_DepartmentId,
+                    //depts,
+                    new SelectList(Model.Departments, "Id", "Name"),
+                    "Select Department",
+                    new { @class="form-control" }
+                    )
+                @Html.ValidationMessageFor(m => m.Employee.Fk_DepartmentId, null, new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Salary)
-                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Salary, null, new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Employee.Salary)
+                @Html.EditorFor(m => m.Employee.Salary, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Employee.Salary, null, new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Gender)
-                @Html.EnumDropDownListFor(m => m.Gender, "Select Gender", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Gender, null, new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Employee.Gender)
+                @Html.EnumDropDownListFor(m => m.Employee.Gender, "Select Gender", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.Gender, null, new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Address)
-                @Html.TextAreaFor(m => m.Address, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Address, null, new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Employee.Address)
+                @Html.EditorFor(m => m.Employee.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Employee.Address, null, new { @class = "text-danger" })
             </div>
 
             <input type="submit" value="@ViewBag.Action" class="btn btn-primary" />
